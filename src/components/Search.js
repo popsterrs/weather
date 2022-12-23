@@ -2,33 +2,34 @@ import React from 'react';
 import { Button } from '@mui/material';
 import { SearchOutlined } from '@mui/icons-material';
 
-function Search() {
+function searchLoad() {
+  console.log("hello");
 
-  window.addEventListener("load", function(){
+  function addResult(location) {
+    let resultButton = document.createElement("Button");
+    resultButton.innerHTML = location;
+    resultButton.classList.add("search-container-result");
+    resultButton.variant = "outlined";
+    document.getElementById("results-table").appendChild(resultButton);
+  }
 
-    function addResult(location) {
-      let resultButton = document.createElement("Button");
-      resultButton.innerHTML = location;
-      resultButton.classList.add("search-container-result");
-      resultButton.variant = "outlined";
-      document.getElementById("results-table").appendChild(resultButton);
-    }
-  
-    addResult("London")
+  addResult("London");
+  addResult("New York");
 
+  document.getElementById("escape").addEventListener("click", function() {
+    document.getElementById("blur-container").classList.remove("blur");
+    document.getElementById("search-container").classList.remove("show");
+  }, false);
 
-    document.getElementById("escape").addEventListener("click", function() {
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
       document.getElementById("blur-container").classList.remove("blur");
       document.getElementById("search-container").classList.remove("show");
-    }, false);
-  
-    window.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        document.getElementById("blur-container").classList.remove("blur");
-        document.getElementById("search-container").classList.remove("show");
-      }
-    }, false);  
-  });
+    }
+  }, false);  
+};
+
+function Search() {
 
   return (
     <div id="search-container" class="search-container">
@@ -45,5 +46,4 @@ function Search() {
   );
 }
 
-export default Search;
-
+export { Search, searchLoad };

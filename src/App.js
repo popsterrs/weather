@@ -1,10 +1,18 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import { Navbar, navbarLoad} from './components/Navbar';
 import Footer from './components/Footer';
 import ApiCredit from './components/ApiCredit';
-import Search from './components/Search';
-import WeatherDisplay from './components/WeatherDisplay';
+import { Search, searchLoad} from './components/Search';
+import { WeatherDisplay, weatherDisplayLoad } from './components/WeatherDisplay';
 import { Button } from '@mui/material';
+
+window.onload = function() {
+    console.log("loaded")
+    searchLoad();
+    navbarLoad();
+    weatherDisplayLoad();
+};
+
 
 function App() {
   return (
