@@ -51,18 +51,6 @@ function Navbar() {
     document.getElementById("blur-container").classList.toggle("blur");
     document.getElementById("search-container").classList.toggle("show");
    }, false);
-
-   document.getElementById("escape").addEventListener("click", function() {
-    document.getElementById("blur-container").classList.remove("blur");
-    document.getElementById("search-container").classList.remove("show");
-  }, false);
-
-  window.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      document.getElementById("blur-container").classList.remove("blur");
-      document.getElementById("search-container").classList.remove("show");
-    }
- }, false);  
   }
 
   return (
