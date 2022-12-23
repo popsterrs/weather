@@ -1,0 +1,43 @@
+{
+   "coord":{
+      "lon":-0.0044,
+      "lat":53.3666
+   },
+   "weather":[
+      {
+         "id":300,
+         "main":"Drizzle",
+         "description":"light intensity drizzle",
+         "icon":"09n"
+      }
+   ],
+   "base":"stations",
+   "main":{
+      "temp":5.95,
+      "feels_like":3.97,
+      "temp_min":4.87,
+      "temp_max":7.04,
+      "pressure":1000,
+      "humidity":93
+   },
+   "visibility":2000,
+   "wind":{
+      "speed":2.57,
+      "deg":150
+   },
+   "clouds":{
+      "all":100
+   },
+   "dt":1671728425,
+   "sys":{
+      "type":1,
+      "id":1521,
+      "country":"GB",
+      "sunrise":1671696826,
+      "sunset":1671723792
+   },
+   "timezone":0,
+   "id":2643553,
+   "name":"Louth",
+   "cod":200
+}
