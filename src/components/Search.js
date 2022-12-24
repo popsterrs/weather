@@ -1,20 +1,58 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { SearchOutlined } from '@mui/icons-material';
+import cityList from "../context/cityList.json";
 
 function searchLoad() {
   console.log("hello");
+  console.log(cityList.length);
+  var results = 0;
 
-  function addResult(location) {
-    let resultButton = document.createElement("Button");
-    resultButton.innerHTML = location;
-    resultButton.classList.add("search-container-result");
-    resultButton.variant = "outlined";
-    document.getElementById("results-table").appendChild(resultButton);
+  document.getElementById("input").addEventListener("input", function ({ target }) {
+    let data = target.value;
+    results = 0;
+
+    let elements = document.getElementsByClassName("search-container-result")
+    while (elements.length > 0) {
+      elements[0].remove();
+    }
+
+    if (data.length) {
+      let autoCompleteValues = autoComplete(data);
+      autoCompleteValues.forEach(value => { addResult(value); });
+    }
+
+    console.log(results);
+  });
+
+  function autoComplete(inputValue) {
+    let destinations = cityList.map(city => city.name)
+
+    let filtered = destinations.filter(
+      (value) => value.toLowerCase().includes(inputValue.toLowerCase())
+    );
+
+    let final = []
+    for (var i = 0; i < 6; i++) {
+      final[i] = filtered[i]
+    }
+
+    console.log(final);
+
+    return final;
   }
 
-  addResult("London");
-  addResult("New York");
+  function addResult(location) {
+    if (location) {
+      let resultButton = document.createElement("Button");
+      resultButton.innerHTML = location;
+      resultButton.classList.add("search-container-result");
+      resultButton.variant = "outlined";
+      document.getElementById("results-table").appendChild(resultButton);
+    }
+
+    results ++;
+  }
 
   document.getElementById("escape").addEventListener("click", function() {
     document.getElementById("blur-container").classList.remove("blur");
