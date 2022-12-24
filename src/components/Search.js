@@ -26,18 +26,21 @@ function searchLoad() {
   });
 
   function autoComplete(inputValue) {
-    let destinations = cityList.map(city => city.name)
+    /*let cities = cityList.map(city => city.name)*/
+    let citiesAndCountries = cityList.map(city => {
+      return { city: city.name + ", " + city.country };
+    });
 
-    let filtered = destinations.filter(
+    const cities = citiesAndCountries.map(item => item.city);
+    const countries = citiesAndCountries.map(item => item.country);
+
+    let filtered = cities.filter(
       (value) => value.toLowerCase().includes(inputValue.toLowerCase())
     );
-
     let final = []
     for (var i = 0; i < 6; i++) {
-      final[i] = filtered[i]
+      final[i] = filtered[i];
     }
-
-    console.log(final);
 
     return final;
   }
