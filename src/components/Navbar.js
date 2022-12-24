@@ -3,8 +3,6 @@ import { Button, Tooltip } from '@mui/material';
 import { DarkModeOutlined, LightModeOutlined, GitHub, SearchOutlined, Cloud } from '@mui/icons-material';
 
 function navbarLoad() {
-  console.log("hi");
-
   if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     localStorage.setItem("darkmode", "true");
 

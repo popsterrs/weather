@@ -2,10 +2,9 @@ import React from 'react';
 import { Button } from '@mui/material';
 import { SearchOutlined } from '@mui/icons-material';
 import cityList from "../context/cityList.json";
+import { updateWeatherDisplay } from '../components/WeatherDisplay';
 
 function searchLoad() {
-  console.log("hello");
-  console.log(cityList.length);
   var results = 0;
 
   document.getElementById("input").addEventListener("input", function ({ target }) {
@@ -21,12 +20,9 @@ function searchLoad() {
       let autoCompleteValues = autoComplete(data);
       autoCompleteValues.forEach(value => { addResult(value); });
     }
-
-    console.log(results);
   });
 
   function autoComplete(inputValue) {
-    /*let cities = cityList.map(city => city.name)*/
     let citiesAndCountries = cityList.map(city => {
       return { city: city.name + ", " + city.country };
     });
@@ -52,6 +48,14 @@ function searchLoad() {
       resultButton.classList.add("search-container-result");
       resultButton.variant = "outlined";
       document.getElementById("results-table").appendChild(resultButton);
+
+      resultButton.addEventListener("click", function(){  
+        document.getElementById("blur-container").classList.remove("blur");
+        document.getElementById("search-container").classList.remove("show");
+
+        var [city, country]= location.split(", ");
+        updateWeatherDisplay(city, country);
+      });
     }
 
     results ++;

@@ -7,7 +7,6 @@ import { WeatherDisplay, weatherDisplayLoad } from './components/WeatherDisplay'
 import { Button } from '@mui/material';
 
 window.onload = function() {
-    console.log("loaded")
     searchLoad();
     navbarLoad();
     weatherDisplayLoad();

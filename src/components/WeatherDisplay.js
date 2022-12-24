@@ -1,12 +1,11 @@
 import React from 'react';
 import { Button } from '@mui/material';
 
-function weatherDisplayLoad(){
-    console.log("yes");
-    var location = "New York";
-    var temperature = 2;
+var units = "metric";
+var temperature = 0;
 
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=New York,us&appid=1bb73886a8a1fffcd95bb4228ba817ab&units=metric")
+function updateWeatherDisplay(city, country) {
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + "&appid=1bb73886a8a1fffcd95bb4228ba817ab&units=" + units)
     .then(response => {
         if (!response.ok) {
         throw new Error(response.statusText);
@@ -15,12 +14,17 @@ function weatherDisplayLoad(){
     })
     .then(data => {
         document.getElementById("temperature").innerHTML = (Math.round(data.main.temp * 10) / 10) +"°C";
-        document.getElementById("location").innerHTML = data.name
+        document.getElementById("location").setAttribute("data-city", data.name);
+        document.getElementById("location").setAttribute("data-country", data.sys.country);
         document.getElementById("lat-lon").innerHTML = "lat: " + data.coord.lat + ", lon:" + data.coord.lon
     })
     .catch(error => {
         console.error(error);
     });
+};
+
+function weatherDisplayLoad(){
+    updateWeatherDisplay("London", "GB");
 };
 
 function WeatherDisplay() {
@@ -47,4 +51,4 @@ function WeatherDisplay() {
   );
 }
 
-export { WeatherDisplay, weatherDisplayLoad };
+export { WeatherDisplay, weatherDisplayLoad, updateWeatherDisplay };
