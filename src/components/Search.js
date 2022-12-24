@@ -34,7 +34,7 @@ function searchLoad() {
       (value) => value.toLowerCase().includes(inputValue.toLowerCase())
     );
     let final = []
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 7; i++) {
       final[i] = filtered[i];
     }
 
@@ -80,7 +80,7 @@ function Search() {
     <div id="search-container" class="search-container">
         <div class="search-container-top">
           <SearchOutlined class="nav-bar-icon nav-bar-search-icon search-container-top-icon"/>
-          <input id="input" type="text" placeholder="Search..."></input>
+          <input id="input" type="text" autoComplete="off" placeholder="Search..."></input>
           <Button id="escape" class="nav-bar-button-right" variant="outlined">
             esc
           </Button>
