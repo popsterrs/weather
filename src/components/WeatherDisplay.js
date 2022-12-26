@@ -58,6 +58,8 @@ function updateWeatherDisplay(city, country) {
             div.appendChild(icon);
             div.appendChild(document.createElement("br"));
             div.appendChild(timeText);
+
+            document.getElementById("current-weather-icon").src = "http://openweathermap.org/img/wn/" + forecastData.list[0].weather[0].icon + "@2x.png"
         }
     })
     .catch(error => {
@@ -79,11 +81,10 @@ function WeatherDisplay() {
   return (
     <div class="weather-display-container">
         <div class="weather-display-container-x">
-            <ul>
-                <li id="location" class="weather-display-location-title"></li>
-                <li id="lat-lon" class="weather-display-lat-lon ">40.7128° N, 74.0060° W</li>
-                <li id="temperature" class="weather-display-temperture">31.2°C</li>
-            </ul>
+            <span id="location" class="weather-display-location-title"></span>
+            <span id="lat-lon" class="weather-display-lat-lon ">40.7128° N, 74.0060° W</span>
+            <span id="temperature" class="weather-display-temperature">31.2°C</span>
+            <img id="current-weather-icon" class="current-weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png"></img>
         </div>
         <div class="weather-display-container-x no-border">
             <div id = "weather-display-top" class="weather-display-container-y">

@@ -30,6 +30,9 @@ body {
   --color-navbar-box-shadow: #E7EBF0;
 
   --color-tone-1: #f3f6f97b;
+
+  --weather-icon-brightness: 90%;
+  --top-container-background: #ffffff;
   
   background-color: var(--background-color);
 }
@@ -47,6 +50,9 @@ body.dark {
   --color-navbar-box-shadow: #132F4C;
 
   --color-tone-1: #132f4c7b;
+
+  --weather-icon-brightness: 90%;
+  --top-container-background: #ffffff00;
 }
 
 .blur {
@@ -388,10 +394,13 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--background-color);
+  background-color: var(--top-container-background);
 }
 
 .weather-display-location-title::before {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
   color: var(--color-text-primary);
   font-size: 5rem;
   content: attr(data-city);
@@ -404,17 +413,24 @@ ul {
   content: attr(data-country);
 }
 
-.weather-display-temperture {
+.weather-display-temperature {
+  position: relative;
+  transform: translate(50px, -30px);
   color: var(--color-text-primary);
-  position: absolute;
-  transform: translate();
-  font-size: 12rem;
+  font-size: 3em;
 }
 
 .weather-display-lat-lon {
+  display: block;
   font-size: 1rem;
   transform: translateY(-20px);
   color: var(--color-text-tertiary);
+}
+
+.current-weather-icon {
+  height: 40px;
+  width: 40px;
+  filter: brightness(var(--weather-icon-brightness));
 }
 
 .weather-display-top-column {
@@ -422,7 +438,7 @@ ul {
 }
 
 .weather-display-icon {
-
+  filter: brightness(var(--weather-icon-brightness));
 }
 
 .weather-display-time-text {
