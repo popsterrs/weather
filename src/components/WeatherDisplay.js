@@ -5,6 +5,7 @@ var units = "metric";
 var temperature = 0;
 
 function updateWeatherDisplay(city, country) {
+    localStorage.setItem("lastLocation", city + ", " + country);
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + "&appid=1bb73886a8a1fffcd95bb4228ba817ab&units=" + units)
     .then(response => {
         if (!response.ok) {
@@ -65,7 +66,12 @@ function updateWeatherDisplay(city, country) {
 };
 
 function weatherDisplayLoad(){
-    updateWeatherDisplay("London", "GB");
+    if (localStorage.getItem("lastLocation")) {
+        var [city, country]= localStorage.getItem("lastLocation").split(", ");
+        updateWeatherDisplay(city, country);
+    } else {
+        updateWeatherDisplay("London", "GB");
+    }
 };
 
 function WeatherDisplay() {
