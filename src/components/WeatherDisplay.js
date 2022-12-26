@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@mui/material';
+import TemperatureGraph from './TemperatureGraph';
 
 var units = "metric";
 var temperature = 0;
@@ -17,7 +18,13 @@ function updateWeatherDisplay(city, country) {
         document.getElementById("temperature").innerHTML = (Math.round(liveData.main.temp * 10) / 10) +"°C";
         document.getElementById("location").setAttribute("data-city", liveData.name);
         document.getElementById("location").setAttribute("data-country", liveData.sys.country);
-        document.getElementById("lat-lon").innerHTML = "lat: " + liveData.coord.lat + ", lon:" + liveData.coord.lon
+        document.getElementById("lat-lon").innerHTML = "lat: " + liveData.coord.lat + ", lon:" + liveData.coord.lon;
+        document.getElementById("summary").innerHTML = "Feels like " + liveData.main.feels_like + "°C. With a " + liveData.weather[0].description + ".";
+        document.getElementById("wind").innerHTML = "Wind: " + liveData.wind.speed + "m/s";
+        document.getElementById("pressure").innerHTML = liveData.main.pressure + "hPA";
+        document.getElementById("humidity").innerHTML = "Humidity: " + liveData.main.humidity + "%";
+        document.getElementById("cloud-coverage").innerHTML = "Cloud coverage: " + liveData.clouds.all + "%";
+        document.getElementById("visiblity").innerHTML = "Visibility: " + (liveData.visibility / 1000) + "km" 
     })
     .catch(error => {
         console.error(error);
@@ -85,6 +92,14 @@ function WeatherDisplay() {
             <span id="lat-lon" class="weather-display-lat-lon ">40.7128° N, 74.0060° W</span>
             <span id="temperature" class="weather-display-temperature">31.2°C</span>
             <img id="current-weather-icon" class="current-weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png"></img>
+            <span id="summary" class="weather-display-summary">Feels like 2°C. Few clouds. Moderate breeze</span>
+            <ul class="weather-display-list">
+                <li id="wind"class="weather-display-list-item">Wind: 7.0m/s</li>
+                <li id="pressure" class="weather-display-list-item">1015hPA</li>
+                <li id="humidity" class="weather-display-list-item">Humidity: 72%</li>
+                <li id="cloud-coverage" class="weather-display-list-item">Cloud coverage: 100%</li>
+                <li id="visiblity" class="weather-display-list-item">Visibility: 10.0km</li>
+            </ul>
         </div>
         <div class="weather-display-container-x no-border">
             <div id = "weather-display-top" class="weather-display-container-y">
@@ -94,7 +109,7 @@ function WeatherDisplay() {
             </div>
             
             <div class="weather-display-container-y no-border">
-
+                temperature graph goes here
             </div>
         </div>
     </div>

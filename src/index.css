@@ -414,8 +414,8 @@ ul {
 }
 
 .weather-display-temperature {
-  position: relative;
-  transform: translate(50px, -30px);
+  position: absolute;
+  transform: translate(50px, -20px);
   color: var(--color-text-primary);
   font-size: 3em;
 }
@@ -428,8 +428,9 @@ ul {
 }
 
 .current-weather-icon {
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 60px;
+  transform: translate(-10px, -20px);
   filter: brightness(var(--weather-icon-brightness));
 }
 
@@ -445,6 +446,28 @@ ul {
   font-size: 1.3rem;
   text-align: center;
   color: var(--color-text-primary);
+  transform: translateY(-60px);
+}
+
+.weather-display-summary {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.weather-display-list {
+  width: 55%;
+  transform: translate(-40px, -5px);
+  column-count: 2;
+}
+
+.weather-display-list-item {
+  color: var(--color-text-secondary);
+  font-size: 1.2em;
+  width: 45%;
+  white-space: nowrap;
+  text-overflow: clip;
 }
 
 .api-credit-container {
