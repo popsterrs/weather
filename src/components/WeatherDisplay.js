@@ -12,11 +12,52 @@ function updateWeatherDisplay(city, country) {
         }
         return response.json();
     })
-    .then(data => {
-        document.getElementById("temperature").innerHTML = (Math.round(data.main.temp * 10) / 10) +"°C";
-        document.getElementById("location").setAttribute("data-city", data.name);
-        document.getElementById("location").setAttribute("data-country", data.sys.country);
-        document.getElementById("lat-lon").innerHTML = "lat: " + data.coord.lat + ", lon:" + data.coord.lon
+    .then(liveData => {
+        document.getElementById("temperature").innerHTML = (Math.round(liveData.main.temp * 10) / 10) +"°C";
+        document.getElementById("location").setAttribute("data-city", liveData.name);
+        document.getElementById("location").setAttribute("data-country", liveData.sys.country);
+        document.getElementById("lat-lon").innerHTML = "lat: " + liveData.coord.lat + ", lon:" + liveData.coord.lon
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + country + "&appid=1bb73886a8a1fffcd95bb4228ba817ab&units=" + units)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error(response.statusText);
+        }
+        return response.json();
+    })
+    .then(forecastData => {
+        let elements = document.getElementsByClassName("weather-display-icon");
+        while (elements.length > 0) {
+          elements[0].remove();
+        }
+
+        let elements2 = document.getElementsByClassName("weather-display-time-text");
+        while (elements2.length > 0) {
+          elements2[0].remove();
+        }
+        for (var i = 0; i < 5; i++) {
+            var div = document.createElement("div");
+            div.classList.add("weather-display-top-column")
+            document.getElementById("weather-display-top-container").appendChild(div);
+
+            var icon = document.createElement("img");
+            icon.src = "http://openweathermap.org/img/wn/" + forecastData.list[i].weather[0].icon + "@2x.png"
+            icon.classList.add("weather-display-icon");
+
+            var date = new Date(forecastData.list[i].dt_txt)
+
+            var timeText = document.createElement("span");
+            timeText.innerHTML = date.getHours() + ":00";
+            timeText.classList.add("weather-display-time-text");
+
+            div.appendChild(icon);
+            div.appendChild(document.createElement("br"));
+            div.appendChild(timeText);
+        }
     })
     .catch(error => {
         console.error(error);
@@ -39,8 +80,10 @@ function WeatherDisplay() {
             </ul>
         </div>
         <div class="weather-display-container-x no-border">
-            <div class="weather-display-container-y">
+            <div id = "weather-display-top" class="weather-display-container-y">
+                <div id = "weather-display-top-container" class="weather-display-top-container">
 
+                </div>
             </div>
             
             <div class="weather-display-container-y no-border">

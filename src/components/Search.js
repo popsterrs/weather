@@ -33,8 +33,13 @@ function searchLoad() {
     let filtered = cities.filter(
       (value) => value.toLowerCase().includes(inputValue.toLowerCase())
     );
+ 
     let final = []
-    for (var i = 0; i < 7; i++) {
+    let max = 7
+    if (filtered.length < 75) {
+      max = 75;
+    }
+    for (var i = 0; i < max; i++) {
       final[i] = filtered[i];
     }
 
@@ -85,7 +90,7 @@ function Search() {
             esc
           </Button>
         </div>
-        <div id="results-table"class="search-container-bottom">
+        <div id="results-table" class="search-container-bottom">
         </div>
     </div>
   );
