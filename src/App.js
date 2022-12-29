@@ -6,19 +6,19 @@ import { Search, searchLoad} from './components/Search';
 import { WeatherDisplay, weatherDisplayLoad } from './components/WeatherDisplay';
 import { Button } from '@mui/material';
 
+
 window.onload = function() {
     searchLoad();
     navbarLoad();
     weatherDisplayLoad();
 };
 
-
 function App() {
+
   return (
+    
     <div>
-      <Search>
-        
-      </Search>
+      <Search/>
 
       <div id="blur-container">
         <Navbar/>

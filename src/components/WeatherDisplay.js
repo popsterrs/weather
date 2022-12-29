@@ -1,6 +1,4 @@
-import React from 'react';
-import { Button } from '@mui/material';
-import { App, data, options } from './TemperatureGraph';
+import React from 'react'
 
 var units = "metric";
 var temperature = 0;
@@ -83,8 +81,8 @@ function weatherDisplayLoad(){
     }
 };
 
-function WeatherDisplay() {
 
+function WeatherDisplay() {
   return (
     <div class="weather-display-container">
         <div class="weather-display-container-x">
@@ -109,7 +107,7 @@ function WeatherDisplay() {
             </div>
             
             <div class="weather-display-container-y no-border">
-                <App></App>
+
             </div>
         </div>
     </div>

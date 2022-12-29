@@ -3,24 +3,14 @@ import { Button, Tooltip } from '@mui/material';
 import { DarkModeOutlined, LightModeOutlined, GitHub, SearchOutlined, Cloud } from '@mui/icons-material';
 
 function navbarLoad() {
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    localStorage.setItem("darkmode", "true");
-
-    document.getElementById("moon").classList.remove("hide");
-    document.getElementById("sun").classList.add("hide");
-  } else {
-    localStorage.setItem("darkmode", "false");
-
+  if (localStorage.getItem("darkMode") === "true") {
+    document.body.classList.add("dark");
     document.getElementById("moon").classList.add("hide");
     document.getElementById("sun").classList.remove("hide");
-  }
-
-  if (typeof(Storage) !== "undefined") {
-    if (localStorage.getItem("darkMode") === "true") {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
+  } else {
+    document.body.classList.remove("dark");
+    document.getElementById("moon").classList.remove("hide");
+    document.getElementById("sun").classList.add("hide");
   }
 
   document.getElementById("darkmode-toggle").addEventListener("click", function() {

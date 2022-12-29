@@ -415,7 +415,7 @@ ul {
 
 .weather-display-temperature {
   position: absolute;
-  transform: translate(50px, -20px);
+  transform: translate(50px, -15px);
   color: var(--color-text-primary);
   font-size: 3em;
 }
@@ -423,14 +423,14 @@ ul {
 .weather-display-lat-lon {
   display: block;
   font-size: 1rem;
-  transform: translateY(-20px);
+  transform: translateY(-15px);
   color: var(--color-text-tertiary);
 }
 
 .current-weather-icon {
   height: 60px;
   width: 60px;
-  transform: translate(-10px, -20px);
+  transform: translate(-10px, -15px);
   filter: brightness(var(--weather-icon-brightness));
 }
 
