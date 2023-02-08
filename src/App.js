@@ -8,9 +8,11 @@ import { Button } from '@mui/material';
 
 
 window.onload = function() {
+  setTimeout(function() {
     searchLoad();
     navbarLoad();
     weatherDisplayLoad();
+}, 2);
 };
 
 function App() {
