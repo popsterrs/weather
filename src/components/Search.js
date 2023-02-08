@@ -7,20 +7,22 @@ import { updateWeatherDisplay } from '../components/WeatherDisplay';
 function searchLoad() {
   var results = 0;
 
-  document.getElementById("input").addEventListener("input", function ({ target }) {
-    let data = target.value;
-    results = 0;
-
-    let elements = document.getElementsByClassName("search-container-result")
-    while (elements.length > 0) {
-      elements[0].remove();
-    }
-
-    if (data.length) {
-      let autoCompleteValues = autoComplete(data);
-      autoCompleteValues.forEach(value => { addResult(value); });
-    }
-  });
+  if (document.getElementById("input")) {
+    document.getElementById("input").addEventListener("input", function ({ target }) {
+      let data = target.value;
+      results = 0;
+  
+      let elements = document.getElementsByClassName("search-container-result")
+      while (elements.length > 0) {
+        elements[0].remove();
+      }
+  
+      if (data.length) {
+        let autoCompleteValues = autoComplete(data);
+        autoCompleteValues.forEach(value => { addResult(value); });
+      }
+    });
+  }
 
   function autoComplete(inputValue) {
     let citiesAndCountries = cityList.map(city => {
